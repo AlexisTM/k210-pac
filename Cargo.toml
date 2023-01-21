@@ -17,3 +17,4 @@ vcell = "0.1"
 
 [features]
 rt = ["riscv-rt"]
+critical-section = []
