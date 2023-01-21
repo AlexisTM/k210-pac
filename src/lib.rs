@@ -161,12 +161,13 @@ pub mod interrupt {
         #[doc = "65 - GPIOHS31"]
         GPIOHS31 = 65,
     }
+    /*
     unsafe impl bare_metal::Nr for Interrupt {
         #[inline(always)]
         fn nr(&self) -> u8 {
             *self as u8
         }
-    }
+    } */
     #[derive(Debug, Copy, Clone)]
     pub struct TryFromInterruptError(());
     impl Interrupt {
@@ -46009,7 +46010,7 @@ impl Peripherals {
     #[doc = r"Returns all the peripherals *once*"]
     #[inline]
     pub fn take() -> Option<Self> {
-        riscv::interrupt::free(|_| {
+        riscv::interrupt::free(|| {
             if unsafe { DEVICE_PERIPHERALS } {
                 None
             } else {
